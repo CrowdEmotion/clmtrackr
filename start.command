@@ -9,7 +9,6 @@ tell app "Terminal"
 end tell
 EOF
 
-echo TEST
 sleep 1
 open http://localhost:8000/examples/clm_emotiondetection_local.html
 
