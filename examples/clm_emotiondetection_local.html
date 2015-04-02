@@ -310,7 +310,7 @@
 					}
 					emoCsv += frameNum++ +','+ (Date.now() - startTime) ;
 					data.forEach(function(emo){
-						emoCsv += ',' + emo.value;
+						emoCsv += ',' + Math.round(emo.value*1000000)/1000000
 					});
 					emoCsv += '\n';
 				}
