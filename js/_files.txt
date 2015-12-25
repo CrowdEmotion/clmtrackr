@@ -1,0 +1,11 @@
+js/clm.js
+js/svmfilter_webgl.js
+js/svmfilter_fft.js
+js/mossefilter.js
+js/left_eye_filter.js
+js/right_eye_filter.js
+js/nose_filter.js
+js/numeric-1.2.6.js
+js/jsfeat-min.js
+js/jsfeat_detect.js
+js/mosse.js
