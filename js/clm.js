@@ -240,7 +240,7 @@ var clm = {
 						webGLContext = null;
 					}
 				} 
-				
+
 				if (webGLContext && params.useWebGL && (typeof(webglFilter) !== "undefined")) {
 					webglFi = new webglFilter();
 					try {
@@ -348,9 +348,9 @@ var clm = {
 				var gi = getInitialPosition(element, box);
 				if (!gi) {
 					// send an event on no face found
-					var evt = document.createEvent("Event");
-					evt.initEvent("clmtrackrNotFound", true, true);
-					document.dispatchEvent(evt)
+						var evt = document.createEvent("Event");
+						evt.initEvent("clmtrackrNotFound", true, true);
+						document.dispatchEvent(evt)
 					
 					return false;
 				}
@@ -411,9 +411,9 @@ var clm = {
 					}
 					
 					// send event to signal that tracking was lost
-					var evt = document.createEvent("Event");
-					evt.initEvent("clmtrackrLost", true, true);
-					document.dispatchEvent(evt)
+						var evt = document.createEvent("Event");
+						evt.initEvent("clmtrackrLost", true, true);
+						document.dispatchEvent(evt)
 					
 					return false;
 				}
@@ -493,10 +493,17 @@ var clm = {
 			var meanshiftVectors = [];
 			
 			for (var i = 0; i < varianceSeq.length; i++) {
-				
+
 				// calculate jacobian
 				jac = createJacobian(currentParameters, eigenVectors);
-
+				
+				// HACK quick fix with a bug happening only in node (not in browsers): when losing the face
+				// the returned jac matrix would contain mostly NaNs, breaking the numeric.inv call a few lines below
+				// except if you do a console.log(eigenVectors) (which *is* weird)
+				// probably a numeric.js bug like https://github.com/sloisel/numeric/issues/28
+				if(numeric.any(numeric.isNaN(jac)))
+					return false;
+				
 				// for debugging
 				//var debugMVs = [];
 				//
@@ -629,9 +636,9 @@ var clm = {
 			previousPositions.push(currentPositions.slice(0));
 			
 			// send an event on each iteration
-			var evt = document.createEvent("Event");
-			evt.initEvent("clmtrackrIteration", true, true);
-			document.dispatchEvent(evt)
+				var evt = document.createEvent("Event");
+				evt.initEvent("clmtrackrIteration", true, true);
+				document.dispatchEvent(evt)
 			
 			if (this.getConvergence() < 0.5) {
 				// we must get a score before we can say we've converged
@@ -640,11 +647,11 @@ var clm = {
 						this.stop();
 					}
 
-					var evt = document.createEvent("Event");
-					evt.initEvent("clmtrackrConverged", true, true);
-					document.dispatchEvent(evt)
+						var evt = document.createEvent("Event");
+						evt.initEvent("clmtrackrConverged", true, true);
+						document.dispatchEvent(evt)
+					}
 				}
-			}
 			
 			// return new points
 			return currentPositions;
