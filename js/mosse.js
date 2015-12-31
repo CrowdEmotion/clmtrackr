@@ -732,3 +732,5 @@ function FFT() {
     }
   }
 }
+
+if(typeof global !== "undefined") { global.mosseFilter = mosseFilter; }

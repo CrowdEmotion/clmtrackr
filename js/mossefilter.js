@@ -71,4 +71,6 @@ var mosseFilterResponses = function() {
     
     return response
   }
-}
+};
+
+if(typeof global !== "undefined") { global.mosseFilterResponses = mosseFilterResponses; }

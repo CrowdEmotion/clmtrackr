@@ -623,3 +623,5 @@ var pModel = {
     "nose": [56.997384601005933, 50.86720524009678]
   }
 };
+
+if(typeof global !== "undefined") { global.pModel = pModel; }

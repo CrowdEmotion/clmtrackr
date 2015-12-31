@@ -57,4 +57,6 @@ var jsfeat_face = function(image) {
     }
   }
   
-}
+};
+
+if(typeof global !== "undefined") { global.jsfeat_face = jsfeat_face; }

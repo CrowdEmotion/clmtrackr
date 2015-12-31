@@ -69,4 +69,6 @@ var emotionClassifier = function() {
 			return false;	
 		}
 	}
-}
+};
+
+if(typeof global !== "undefined") { global.emotionClassifier = emotionClassifier; }

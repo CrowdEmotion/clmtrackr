@@ -561,4 +561,6 @@ var svmFilter = function() {
       }
     }
   }
-}
+};
+
+if(typeof global !== "undefined") { global.svmFilter = svmFilter; }

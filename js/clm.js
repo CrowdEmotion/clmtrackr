@@ -1,3 +1,45 @@
+if(typeof global !== "undefined") {
+	global.window = global.self = global;
+	global.Canvas = require('canvas'); global.Image = Canvas.Image; global.ImageData = Canvas.ImageData;
+	
+	global.document = {};
+	global.document.createElement = function(name) {
+		if(name.toLowerCase() === 'canvas') {
+			// size per spec defaults http://www.w3.org/TR/2012/WD-html5-author-20120329/the-canvas-element.html#the-canvas-element
+			var canvas = new Canvas(300, 150);
+			canvas.tagName = 'CANVAS';
+			canvas.setAttribute = function(name, value) {
+				if(name.toLowerCase() === 'width') this.width = value;
+				else if(name.toLowerCase() === 'height') this.height = value;
+				else throw "No "+ name +" attribute can be set on canvas element.";
+			};
+			return canvas;
+		}
+		
+		throw "No "+ name +" element can be created.";
+	};
+	global.document.createEvent = function(name) {
+		var evt = {}
+		evt.initEvent = function(name, b1, b2) {};
+		return evt;
+	};
+	global.document.dispatchEvent = function(evt) {
+	};
+}
+
+var numeric = require('./numeric-1.2.6.js');
+var mosseFilter_js = require('./mosse.js');
+var mosseFilterResponses_js = require('./mossefilter.js');
+var left_eye_filter_js = require('./left_eye_filter.js');
+var right_eye_filter_js = require('./right_eye_filter.js');
+var nose_filter_js = require('./nose_filter.js');
+var svmFilter_js = require('./svmfilter_fft.js');
+var svmfilter_webgl_js = require('./svmfilter_webgl.js');
+var jsfeat_js = require('./jsfeat.js');
+var frontalface_js = require('./frontalface.js');
+var jsfeat_detect_js= require('./jsfeat_detect.js');
+
+
 "use strict";
 //requires: ccv.js, numeric.js
 
@@ -1330,4 +1372,6 @@ var clm = {
 		
 		return true;
 	}
-}
+};
+
+if(typeof global !== "undefined") { global.clm = clm; }

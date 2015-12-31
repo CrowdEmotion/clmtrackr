@@ -1,0 +1,16 @@
+{
+  "name": "clmtrackr",
+  "version": "1.0.0",
+  "description": "node.js version",
+  "main": "node_test.js",
+  "dependencies": {
+    "canvas": "^1.3.5",
+    "node-demux": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diego Caravana",
+  "license": "ISC"
+}

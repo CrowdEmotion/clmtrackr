@@ -4511,3 +4511,5 @@ self.Float64Array = self.Float64Array || Array;
   })();
   a.bbf = b
 })(jsfeat);
+
+if(typeof global !== "undefined") { global.jsfeat = jsfeat; }
